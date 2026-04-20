@@ -1,0 +1,1 @@
+ALTER TABLE "credentuals" ALTER COLUMN "password" SET DATA TYPE json;
