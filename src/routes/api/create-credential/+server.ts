@@ -6,10 +6,11 @@ export const POST = async ({ locals, request }) => {
   try {
     const data: typeof credentials.$inferInsert = await request.json();
 
-    const session = await locals.auth();
-    if (!session?.user?.id) throw new Error("Session Expired");
+    const userId = locals?.user?.id;
 
-    data.userId = session.user.id;
+    if (!userId) throw new Error("Session Expired");
+
+    data.userId = userId;
     await addCredential(data);
     return json({ message: "Success" }, { status: 201 });
   } catch (err: any) {

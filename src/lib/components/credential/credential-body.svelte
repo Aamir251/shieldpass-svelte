@@ -17,8 +17,6 @@
 
       const encryptionKey = await getEncryptionKeyFromLocalStorage();
 
-      console.log({ encryptionKey })
-
       if (!encryptionKey) throw new Error("KEY_NOT_FOUND");
       const { data, iv } = credential.password;
       await navigator.clipboard.writeText(

@@ -29,7 +29,6 @@ export const actions : Actions = {
       body : user
     })
 
-    console.log({ resp })
    } catch(error) {
 
     console.log({ error })

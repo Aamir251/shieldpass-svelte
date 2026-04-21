@@ -9,7 +9,6 @@ export const load = async (req) => {
   };
 
   const data = await getCredentialById(id);
-  console.log({ data })
 
   if (!data.length) {
     console.log('Credential not found')

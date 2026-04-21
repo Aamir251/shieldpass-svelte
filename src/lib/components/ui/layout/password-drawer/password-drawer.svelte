@@ -5,7 +5,7 @@
   import Input from "../../input/input.svelte";
   import { goto } from "$app/navigation";
   import { decryptMainKey, storeEncryptionKeyLocally } from "$lib/utils/cipher";
-    import { ERRORS } from "$lib/utils/constants";
+  import { ERRORS } from "$lib/utils/constants";
 
   let { isOpen } = $props();
 
@@ -26,7 +26,6 @@
 
       const data = await resp.json();
 
-      console.log("PASSWORD DRAWER ", data);
 
       if (data.message === ERRORS.SESSION_EXPIRED)
         throw new Error(ERRORS.SESSION_EXPIRED);
@@ -35,8 +34,6 @@
         data.encryptionKey,
         password as string,
       );
-
-      console.log({ encryptionKey })
 
       await storeEncryptionKeyLocally(encryptionKey);
 
@@ -60,19 +57,17 @@
   <Drawer.Content class="max-w-xl mx-auto">
     <Drawer.Header>
       <Drawer.Title>Please Enter your Master Password</Drawer.Title>
-      <Drawer.Description class="mt-2">
-        <form onsubmit={handleSubmit}>
-          <Input
-            placeholder="Master password"
-            name="password"
-            type="password"
-          />
-        </form>
-      </Drawer.Description>
     </Drawer.Header>
-    <Drawer.Footer>
-      <Button type="submit" disabled={loading}>Submit</Button>
-      <Drawer.Close>Cancel</Drawer.Close>
-    </Drawer.Footer>
+    <form onsubmit={handleSubmit} class="px-4">
+      <Input placeholder="Master password" name="password" type="password"/>
+      <Drawer.Footer class="px-0">
+        <Button type="submit" disabled={loading} aria-disabled={loading}
+          >Submit</Button
+        >
+        <Drawer.Close disabled={loading} aria-disabled={loading}
+          >Cancel</Drawer.Close
+        >
+      </Drawer.Footer>
+    </form>
   </Drawer.Content>
 </Drawer.Root>

@@ -24,6 +24,10 @@ export const actions: Actions = {
         },
       });
 
+      return {
+        success : "Login Successful"
+      }
+
     } catch (error) {
       console.log({ error });
       if (error instanceof APIError) {

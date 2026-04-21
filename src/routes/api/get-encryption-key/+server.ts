@@ -8,8 +8,6 @@ export const GET: RequestHandler = async ({ locals }) => {
   try {
     const userId = locals?.user?.id;
 
-    console.log({ userId })
-
     if (!userId) throw new Error(ERRORS.SESSION_EXPIRED)
 
     const userEncryption = await getEncryptionKey(userId);
