@@ -31,9 +31,7 @@
 </script>
 
 <aside
-  class="w-10/12 max-lg:fixed {isOpen
-    ? 'left-0'
-    : '-left-full'} top-0 bg-white max-lg:h-screen max-lg:pt-10 lg:w-64 px-2 border border-transparent border-r-gray-200"
+  class="w-10/12 max-lg:fixed {isOpen ? 'left-0' : '-left-full'} top-0 bg-card/70 backdrop-blur-xl max-lg:h-screen max-lg:pt-10 lg:w-64 px-2 border border-border/40"
 >
   <ul class="space-y-2">
     {#each items as item}

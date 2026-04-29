@@ -79,12 +79,15 @@
 
 <div
   onclick={closeDrawer}
-  class="fixed inset-0 w-screen h-screen bg-black/30 z-10"
+  class="fixed inset-0 w-screen h-screen bg-black/20 z-10"
 ></div>
 
 <Card.Root
-  class="overflow-hidden rounded-none border-none fixed top-0 right-0 z-20 bg-gray-50 shadow-sm h-screen w-xl p-3"
+  class="overflow-hidden backdrop-blur-xs  rounded-none border-none fixed top-0 right-0 z-20 bg-[#ededed96] shadow-sm h-screen w-xl p-3"
 >
+  <div class="h-96 w-96 bg-[#a8f9a45e] blur-[175px] absolute top-0 right-0  rounded-full "></div>
+  <div class="h-96 w-96 bg-[#587fa3a1] blur-[175px] absolute bottom-0 left-0  rounded-full "></div>
+
   <Card.Content>
     <form id="credential-form" class="p-6 md:p-8" onsubmit={handleSubmit}>
       <FieldGroup class="gap-y-5">

@@ -12,9 +12,9 @@
 </script>
 
 <a
-  class="flex gap-2 items-center p-2 font-medium rounded-sm {isActive
-    ? 'border border-gray-50 bg-gray-200 opacity-100'
-    : 'opacity-60'}"
+  class="flex gap-2 items-center p-2 font-medium rounded-xl transition-all {isActive
+    ? 'border border-border/60 bg-input/50 backdrop-blur-md opacity-100'
+    : 'opacity-70 hover:bg-input/40 hover:opacity-100'}"
   {href}
 >
   <Icon size={18} />
