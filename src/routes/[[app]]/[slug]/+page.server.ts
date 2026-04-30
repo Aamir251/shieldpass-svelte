@@ -8,10 +8,8 @@ import { error, redirect } from "@sveltejs/kit";
 type CredentialPageCategory = (typeof CREDENTIAL_PAGE_CATEGORIES)[number];
 
 export const load = async ({ params, locals }) => {
-
   if (!locals.user?.id) {
     return redirect(302, "/login");
-
   }
   const { slug } = params;
 
@@ -27,11 +25,7 @@ export const load = async ({ params, locals }) => {
   //   error(404, "Page Not found");
   // }
 
-  // fetch credentials based on category
-
-  const resp = await getCredentialsBasedOnCategory(slug, locals.user.id);
-
   return {
-    credentials: resp,
+    credentials: getCredentialsBasedOnCategory(slug, locals.user.id),
   };
 };

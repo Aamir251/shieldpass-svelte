@@ -11,7 +11,7 @@
 
 <div class="flex justify-between max-md:flex-col gap-y-4">
   <form class="flex gap-x-5 w-full">
-    <Input placeholder="search credentials" class="max-w-96" />
+    <Input placeholder="search credentials" class="max-w-xl" />
     <Button type="submit" variant="default">Search</Button>
   </form>
 

@@ -2,10 +2,17 @@ import { and, eq } from "drizzle-orm";
 import { db } from ".";
 import { credentials } from "./schema";
 
-export const getCredentialsBasedOnCategory = async (category: string, userId : string) => {
+export const getCredentialsBasedOnCategory = async (
+  category: string,
+  userId: string,
+) => {
   if (category === "all") {
-    return await db.select().from(credentials).where(eq(credentials.userId, userId));
+    return await db
+      .select()
+      .from(credentials)
+      .where(eq(credentials.userId, userId));
   }
+
   return await db
     .select()
     .from(credentials)

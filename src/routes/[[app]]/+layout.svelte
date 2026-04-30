@@ -24,10 +24,10 @@
 {/if}
 
 <div
-  class="pt-5 lg:pt-14 grid lg:grid-cols-[auto_1fr] border-r-amber-100 h-screen lg:px-10"
+  class=" border-r-amber-100 h-screen grid grid-cols-[auto_1fr]"
 >
   <Sidebar />
-  <div class="px-4 lg:pl-8">
+  <div class="px-3 lg:pl-6 pt-8">
     <Topbar />
     {@render children()}
   </div>

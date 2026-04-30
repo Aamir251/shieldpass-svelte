@@ -1,13 +1,20 @@
 <script lang="ts">
   import Credential from "$lib/components/credential/credential.svelte";
+  import Spinner from "$lib/components/ui/spinner/spinner.svelte";
 
   const { data } = $props();
 
-  const credentials = $derived(data.credentials);
 </script>
 
-<div class="mt-5 space-y-4">
-  {#each credentials as credential}
-    <Credential {credential} />
-  {/each}
-</div>
+{#await data.credentials}
+  <div class="w-full max-w-3xl flex justify-center items-center h-72">
+    <Spinner class="size-7" />
+  </div>
+{:then credentials}
+  <div class="pt-7 grid grid-cols-1 items-start gap-4 md:grid-cols-2 pb-4 xl:grid-cols-3 max-h-[calc(100vh-100px)] overflow-y-auto">
+    {#each credentials as credential}
+      <Credential {credential} />
+    {/each}
+  </div>
+
+{/await}

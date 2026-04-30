@@ -4,24 +4,25 @@
 	import { type VariantProps, tv } from "tailwind-variants";
 
 	export const buttonVariants = tv({
-		base: "focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 rounded-sm text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+		base: "focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 		variants: {
 			variant: {
 				default:
-					"bg-primary/10 text-black hover:bg-primary/15 border border-primary/20 backdrop-blur-xl shadow-xs ",
+					"bg-white/45 text-foreground hover:bg-white/60 border border-white/60 dark:bg-white/12 dark:text-white dark:hover:bg-white/18 dark:border-white/20 backdrop-blur-xl shadow-xs",
 				destructive:
-					"bg-destructive/15 hover:bg-destructive/20 focus-visible:ring-destructive/25 border border-destructive/30 text-white backdrop-blur-xl shadow-xs",
+					"bg-destructive/22 text-red-900 hover:bg-destructive/30 focus-visible:ring-destructive/25 border border-destructive/35 dark:text-red-100 backdrop-blur-xl shadow-xs",
 				outline:
-					"bg-transparent hover:bg-accent/25 hover:text-accent-foreground dark:bg-input/20 dark:hover:bg-input/30 border border-input/60 backdrop-blur-xl shadow-xs",
+					"bg-white/22 text-foreground hover:bg-white/35 hover:text-foreground dark:bg-white/8 dark:text-white dark:hover:bg-white/14 border border-white/40 dark:border-white/20 backdrop-blur-xl shadow-xs",
 				secondary:
-					"bg-secondary/25 text-secondary-foreground hover:bg-secondary/35 border border-secondary/30 backdrop-blur-xl shadow-xs",
-				ghost: "hover:bg-accent/20 hover:text-accent-foreground dark:hover:bg-accent/30 backdrop-blur-xl",
+					"bg-primary/12 text-foreground hover:bg-primary/20 dark:bg-white/10 dark:text-white dark:hover:bg-white/16 border border-primary/20 dark:border-white/20 backdrop-blur-xl shadow-xs",
+				ghost:
+					"text-foreground hover:bg-white/25 hover:text-foreground dark:text-white dark:hover:bg-white/14 backdrop-blur-xl",
 				link: "text-primary underline-offset-4 hover:underline",
 			},
 			size: {
 				default: "h-9 px-4 py-2 has-[>svg]:px-3",
-				sm: "h-8 gap-1.5 rounded-sm px-3 has-[>svg]:px-2.5",
-				lg: "h-10 rounded-sm px-6 has-[>svg]:px-4",
+				sm: "h-8 gap-1.5 rounded-xl px-3 has-[>svg]:px-2.5",
+				lg: "h-10 rounded-xl px-6 has-[>svg]:px-4",
 				icon: "size-9",
 				"icon-sm": "size-8",
 				"icon-lg": "size-10",

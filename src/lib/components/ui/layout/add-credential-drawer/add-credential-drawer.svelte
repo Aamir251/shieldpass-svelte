@@ -10,6 +10,15 @@
   import { FieldGroup, Field, FieldLabel } from "../../field";
   import Input from "../../input/input.svelte";
   import CategoryDropdown from "$lib/components/credential/category-dropdown.svelte";
+  import {
+    Globe,
+    KeySquare,
+    Mail,
+    Plus,
+    ShieldUser,
+    UserRound,
+    X,
+  } from "@lucide/svelte";
 
   const id = $props.id();
 
@@ -21,6 +30,7 @@
 
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
+    loading = true;
     const formData = new FormData(e.target as HTMLFormElement);
 
     // encyrpt credential password
@@ -73,71 +83,113 @@
       form.reset();
     } catch (err) {
       console.error(err);
+    } finally {
+      loading = false;
     }
   };
 </script>
 
-<div
+<button
+  type="button"
   onclick={closeDrawer}
-  class="fixed inset-0 w-screen h-screen bg-black/20 z-10"
-></div>
+  class="fixed inset-0 z-10 h-screen w-screen bg-black/10 backdrop-blur-[3px]"
+  aria-label="Close add credential drawer"
+></button>
 
 <Card.Root
-  class="overflow-hidden backdrop-blur-xs  rounded-none border-none fixed top-0 right-0 z-20 bg-[#ededed96] shadow-sm h-screen w-xl p-3"
+  class="fixed top-0 right-0 z-20 h-screen w-full max-w-2xl overflow-hidden rounded-none  bg-card/75 p-2 lg:pl-0 shadow-[0_20px_70px_rgba(15,23,42,0.03)] backdrop-blur-2xl"
 >
-  <div class="h-96 w-96 bg-[#a8f9a45e] blur-[175px] absolute top-0 right-0  rounded-full "></div>
-  <div class="h-96 w-96 bg-[#587fa3a1] blur-[175px] absolute bottom-0 left-0  rounded-full "></div>
+  <div class="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-fuchsia-300/55 blur-[140px]"></div>
+  <div class="absolute top-1/3 -left-28 h-64 w-64 rounded-full bg-sky-300/15 blur-[160px]"></div>
+  <div class="absolute -bottom-24 right-10 h-72 w-72 rounded-full bg-pink-300/30 blur-[150px]"></div>
 
-  <Card.Content>
-    <form id="credential-form" class="p-6 md:p-8" onsubmit={handleSubmit}>
+  <Card.Content class="relative z-10 h-full overflow-y-auto rounded-md border border-white/15 bg-white/20 px-4 py-5 backdrop-blur-xl sm:px-6">
+    <div class="mb-6 flex items-start justify-between gap-3">
+      <div>
+        <p class="text-xs font-semibold tracking-[0.16em] text-muted-foreground">NEW ENTRY</p>
+        <h2 class="mt-1 text-2xl font-semibold text-foreground">Add Credential</h2>
+        <p class="mt-1 text-sm text-muted-foreground">
+          Store account details in your secure glass vault.
+        </p>
+      </div>
+      <Button type="button" variant="ghost" size="icon-sm" onclick={closeDrawer} aria-label="Close drawer">
+        <X size={16} />
+      </Button>
+    </div>
+
+    <form id="credential-form" class="space-y-5" onsubmit={handleSubmit}>
       <FieldGroup class="gap-y-5">
-        <h2 class="text-lg font-medium">Add Credential</h2>
-        <Field>
-          <FieldLabel for="email-{id}">Name</FieldLabel>
-          <Input
-            id="name-{id}"
-            type="name"
-            name="name"
-            placeholder="Google Personal"
-            required
-          />
+        <div class="grid gap-4 sm:grid-cols-2">
+          <Field class="gap-2">
+            <FieldLabel for="name-{id}" class="inline-flex items-center gap-2 text-sm font-semibold">
+              <ShieldUser size={14} />
+              Name
+            </FieldLabel>
+            <Input
+              id="name-{id}"
+              type="name"
+              name="name"
+              placeholder="Google Personal"
+              required
+            />
+          </Field>
+          <Field class="gap-2">
+            <FieldLabel for="username-{id}" class="inline-flex items-center gap-2 text-sm font-semibold">
+              <UserRound size={14} />
+              Username
+            </FieldLabel>
+            <Input
+              id="username-{id}"
+              type="text"
+              name="username"
+              placeholder="john51"
+            />
+          </Field>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <Field class="gap-2">
+            <FieldLabel for="email-{id}" class="inline-flex items-center gap-2 text-sm font-semibold">
+              <Mail size={14} />
+              Email
+            </FieldLabel>
+            <Input
+              id="email-{id}"
+              type="email"
+              name="email"
+              placeholder="m@example.com"
+            />
+          </Field>
+          <Field class="gap-2">
+            <FieldLabel for="password-{id}" class="inline-flex items-center gap-2 text-sm font-semibold">
+              <KeySquare size={14} />
+              Password
+            </FieldLabel>
+            <Input id="password-{id}" name="password" type="password" />
+          </Field>
+        </div>
+
+        <Field class="gap-2">
+          <FieldLabel for="websiteUrl-{id}" class="inline-flex items-center gap-2 text-sm font-semibold">
+            <Globe size={14} />
+            Website URL
+          </FieldLabel>
+          <Input id="websiteUrl-{id}" name="websiteUrl" type="text" placeholder="https://example.com" />
         </Field>
-        <Field>
-          <FieldLabel for="username-{id}">Username</FieldLabel>
-          <Input
-            id="username-{id}"
-            type="text"
-            name="username"
-            placeholder="John51"
-          />
-        </Field>
-        <Field>
-          <FieldLabel for="email-{id}">Email</FieldLabel>
-          <Input
-            id="email-{id}"
-            type="email"
-            name="email"
-            placeholder="m@example.com"
-          />
-        </Field>
-        <Field>
-          <FieldLabel for="password-{id}">Password</FieldLabel>
-          <Input id="password-{id}" name="password" type="password" />
-        </Field>
-        <Field>
-          <FieldLabel for="websiteUrl-{id}">Website Url</FieldLabel>
-          <Input id="websiteUrl-{id}" name="websiteUrl" type="text" />
-        </Field>
-        <Field>
-          <FieldLabel for="websiteUrl-{id}">Category</FieldLabel>
+
+        <Field class="gap-2">
+          <FieldLabel for="category-{id}" class="text-sm font-semibold">Category</FieldLabel>
           <CategoryDropdown />
         </Field>
-        <Field>
-          <Button disabled={loading} type="submit">
-            {loading ? "Please wait..." : "Add Credential"}
-          </Button>
-        </Field>
       </FieldGroup>
+
+      <div class="flex items-center justify-end gap-3 border-t border-white/35 pt-4">
+        <Button type="button" variant="ghost" onclick={closeDrawer}>Cancel</Button>
+        <Button disabled={loading} type="submit" class="inline-flex items-center gap-2">
+          <Plus size={15} />
+          {loading ? "Adding..." : "Add Credential"}
+        </Button>
+      </div>
     </form>
   </Card.Content>
 </Card.Root>

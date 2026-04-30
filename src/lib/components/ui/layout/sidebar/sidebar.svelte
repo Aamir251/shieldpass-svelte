@@ -26,17 +26,28 @@
     { id: 4, title: "Apps", href: "/apps", icon: TabletSmartphone },
     { id: 5, title: "Ecommerce", href: "/ecommerce", icon: ShoppingCart },
   ];
-
-  let isOpen: boolean = $state(false);
 </script>
 
 <aside
-  class="w-10/12 max-lg:fixed {isOpen ? 'left-0' : '-left-full'} top-0 bg-card/70 backdrop-blur-xl max-lg:h-screen max-lg:pt-10 lg:w-64 px-2 border border-border/40"
+  class="static hidden h-screen w-64 shrink-0 overflow-hidden border border-white/40 bg-card/70 p-4 backdrop-blur-2xl shadow-[0_20px_60px_rgba(15,23,42,0.06)] lg:flex lg:flex-col"
 >
-  <ul class="space-y-2">
-    {#each items as item}
-      {@const Icon = item.icon}
-      <Sidebarlink {Icon} href={item.href} title={item.title} />
-    {/each}
-  </ul>
+  <div class="absolute -left-12 -top-14 h-52 w-52 rounded-full bg-sky-300/30 blur-[120px]"></div>
+  <div class="absolute -right-20 bottom-10 h-56 w-56 rounded-full bg-violet-300/25 blur-[120px]"></div>
+
+  <div class="relative z-10 flex h-full flex-col overflow-y-auto">
+    <div class="rounded-2xl border border-white/40 bg-white/35 p-4 backdrop-blur-xl">
+      <p class="text-xs font-semibold tracking-[0.16em] text-muted-foreground">SHIELD PASS</p>
+      <p class="mt-1 text-xs text-muted-foreground">Your categories, secured and organized.</p>
+    </div>
+
+    <p class="mt-14 px-2 text-xs font-semibold tracking-[0.16em] text-muted-foreground">CATEGORIES</p>
+
+    <ul class="mt-2 space-y-1.5">
+      {#each items as item}
+        {@const Icon = item.icon}
+        <Sidebarlink {Icon} href={item.href} title={item.title} />
+      {/each}
+    </ul>
+
+  </div>
 </aside>

@@ -9,9 +9,13 @@
     { value: "ecommerce", label: "Ecommerce" },
   ];
 
-  let { existingValue } = $props();
+  let { existingValue = "" }: { existingValue?: string | null } = $props();
 
-  let value = $state(existingValue ?? "");
+  let value = $state("");
+
+  $effect(() => {
+    value = existingValue ?? "";
+  });
 
   const selectedCategory = $derived(
     categories.find((f) => f.value === value)?.label ?? "Select a Category",
