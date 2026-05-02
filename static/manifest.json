@@ -1,0 +1,14 @@
+{
+  "name": "ShieldPass",
+  "description": "An end to end encrypted credential management system",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "icons/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
