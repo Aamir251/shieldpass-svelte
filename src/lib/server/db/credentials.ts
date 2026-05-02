@@ -1,4 +1,4 @@
-import { and, eq } from "drizzle-orm";
+import { and, eq, ilike, like, or } from "drizzle-orm";
 import { db } from ".";
 import { credentials } from "./schema";
 
@@ -42,4 +42,19 @@ export const updateCredential = async (
     .update(credentials)
     .set(credential)
     .where(and(eq(credentials.id, id), eq(credentials.userId, userId)));
+};
+
+export const getSearchCredentials = async (query: string, userId: string) => {
+  return await db
+    .select()
+    .from(credentials)
+    .where(
+      and(
+        or(
+          ilike(credentials.name, `%${query}%`),
+          ilike(credentials.username, `%${query}%`),
+        ),
+        eq(credentials.userId, userId),
+      ),
+    );
 };
